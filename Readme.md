@@ -43,8 +43,9 @@ Ward
 
 ## Assumptions
 
-* Invalid lines in either the users or tweets file are ignored.
 * This should run on most versions of ruby and has no external dependencies, but the recommended version is Ruby 2.2.3.
+* Invalid lines in either the users or tweets file are ignored.
+* Greater than signs (`>`) and commas (`,`) are not allowed in usernames since they form part of the file format
 
 ## Testing
 

@@ -35,5 +35,25 @@ describe UserList do
       expect(subject.store.count).to eq(3)
       expect(subject.store).to_not have_key('Maas')
     end
+
+    it 'handles spaces in usernames' do
+      list = UserList.new(StringIO.new('I like spaces follows Alan'))
+      expect(list.store.count).to eq(2)
+      expect(list.store).to have_key('I like spaces')
+      expect(list.store).to have_key('Alan')
+    end
+
+    it 'doesn\'t allow greater than signs (>) in username' do
+      list = UserList.new(StringIO.new("Some>name follows You\nYou follows Some>name"))
+      expect(list.store.count).to eq(0)
+    end
+
+    it 'doesn\'t allow commas (,) in username' do
+      list = UserList.new(StringIO.new("Some,name follows You\nYou follows Some,name"))
+      expect(list.store.count).to eq(3)
+      expect(list.store).to have_key('Some')
+      expect(list.store).to have_key('name')
+      expect(list.store).to have_key('You')
+    end
   end
 end
