@@ -43,7 +43,6 @@ Ward
 
 ## Assumptions
 
-* This should run on most versions of ruby and has no external dependencies, but the recommended version is Ruby 2.2.3.
 * Invalid lines in either the users or tweets file are ignored.
 * Greater than signs (`>`) and commas (`,`) are not allowed in usernames since they form part of the file format
 
@@ -61,7 +60,19 @@ Or if you want some context: `rspec --format documentation --color`
 
 ## Execution
 
-1. `feed.rb` should be executable. If it's not, make it executable: `chmod +x feed.rb`
-2. To see usage details, run the file without parameters: `./feed.rb`
-3. Run the file with the test files: `./feed.rb user.txt tweet.txt`
+1 This should run on most versions of ruby and has no external dependencies, but the recommended version is Ruby 2.2.3.
+2. `feed.rb` should be executable. If it's not, make it executable: `chmod +x feed.rb`
+3. To see usage details, run the file without parameters: `./feed.rb`
+4. Run the file with the test files: `./feed.rb user.txt tweet.txt`
 
+You can use the following on Ubuntu 14.04
+
+```
+sudo apt-get install -y ruby1.9.3 git
+git clone https://github.com/jrgns/ag-coding-test.git
+cd ag-coding-test
+sudo gem install rspec --no-rdoc --no-ri # The VM I tested on needed sudo for some reason. RVM is better
+rspec
+chmod +x feed.rb
+./feed.rb user.txt tweet.txt
+```
