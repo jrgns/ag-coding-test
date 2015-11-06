@@ -9,6 +9,6 @@ class TweetList < FileList
   def parse(line)
     matches = line.chomp.match(/^([^>]+)> ?(.*)/)
     return if matches.nil?
-    store << { user: matches[1], tweet: matches[2][0..140] }
+    store << { user: matches[1], tweet: matches[2][0..139] }
   end
 end
