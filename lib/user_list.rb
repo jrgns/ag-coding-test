@@ -10,11 +10,12 @@ class UserList < FileList
   end
 
   def parse(line)
-    _, follower, leaders = line.strip.match(/^(\S+) ?follows ?(.*)$/).to_a
-    return if follower.nil? || leaders.nil?
+    match, follower, leaders = line.strip.match(/^([^>,]+) follows (.*)$/).to_a
+    return if match.nil?
     leaders.split(/, ?/).each do |leader|
-      store[follower] << leader unless store[follower].include?(leader)
+      next if leader.match(/[>,]/)
       store[leader] = [] unless store.has_key?(leader)
+      store[follower] << leader unless store[follower].include?(leader)
     end
   end
 end
